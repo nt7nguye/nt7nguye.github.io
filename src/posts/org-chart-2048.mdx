@@ -1,0 +1,17 @@
+---
+title: 2048, but the tiles are the org chart
+date: 2022-08-15
+---
+import Game2048 from "../embeds/Game2048.astro";
+
+During a hack week at Datadog, I scraped the company org chart from Workday and turned it into 2048. Every tile is a person. Merge two of the same and you get their manager. Keep going and you climb the chart until you reach the top.
+
+The version below uses job titles instead of real people.
+
+<Game2048 />
+
+## How it works
+
+The original was a React app. Each tile value (2, 4, 8, … 2048) maps to a person, and the map comes from the scraped chart. To move a row, take its tiles starting from the side you're moving toward, merge two neighbours with the same value (once per tile per move), then pack the rest against the edge. The slide is a CSS transition on each tile's position, and the merge happens after the slide ends.
+
+This page is a rewrite of that in about 130 lines of plain JavaScript: [game2048.js](https://github.com/nt7nguye/nt7nguye.github.io/blob/main/src/embeds/game2048.js).

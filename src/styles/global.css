@@ -1,6 +1,6 @@
-:root { color-scheme: light dark; --page: #f9f9f7; --ink: #0b0b0b; --ink-2: #52514e; --muted: #898781; --grid: #e1e0d9; --accent: #2a78d6; }
+:root { color-scheme: light dark; --page: #f9f9f7; --ink: #0b0b0b; --ink-2: #52514e; --muted: #898781; --grid: #e1e0d9; --accent: #2a78d6; --accent-2: #eb6834; }
 @media (prefers-color-scheme: dark) {
-  :root { --page: #0d0d0d; --ink: #f0efec; --ink-2: #c3c2b7; --grid: #2c2c2a; --accent: #3987e5; }
+  :root { --page: #0d0d0d; --ink: #f0efec; --ink-2: #c3c2b7; --grid: #2c2c2a; --accent: #3987e5; --accent-2: #d95926; }
 }
 
 body { margin: 0; background: var(--page); color: var(--ink); font: 16px/1.6 system-ui, sans-serif; }
@@ -20,3 +20,7 @@ pre { padding: 12px; overflow-x: auto; }
 input { font: 16px ui-monospace, Menlo, monospace; color: inherit; background: none; width: 100%; padding: 6px 8px; box-sizing: border-box; }
 blockquote { margin: 0; padding-left: 14px; border-left: 2px solid var(--grid); color: var(--ink-2); }
 footer { margin-top: 48px; color: var(--muted); }
+pre.astro-code { background: none !important; }
+@media (prefers-color-scheme: dark) {
+  .astro-code span { color: var(--shiki-dark) !important; }
+}

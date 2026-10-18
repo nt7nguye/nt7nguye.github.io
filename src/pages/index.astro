@@ -1,21 +1,17 @@
-<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Tan Nguyen</title>
-  <link rel="stylesheet" href="/style.css">
-</head>
-<body>
-<main>
+---
+import { getCollection } from "astro:content";
+import Base from "../layouts/Base.astro";
+
+const posts = (await getCollection("posts")).sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+const day = (d: Date) => d.toISOString().slice(0, 10);
+---
+<Base title="Tan Nguyen">
   <h1>Tan Nguyen</h1>
   <p class="sub">Software engineer in Toronto.</p>
 
   <h2>Writing</h2>
   <ul class="list">
-    <li><span>2025-09-22</span><a href="/posts/games-as-interviews/">Games make good interview questions</a></li>
-    <li><span>2023-03-30</span><a href="/posts/calculator-ast/">I beat Google's calculator</a></li>
-    <li><span>2022-08-15</span><a href="/posts/org-chart-2048/">2048, but the tiles are the org chart</a></li>
+    {posts.map((p) => <li><span>{day(p.data.date)}</span><a href={`/posts/${p.id}/`}>{p.data.title}</a></li>)}
   </ul>
 
   <h2>Work</h2>
@@ -32,6 +28,4 @@
     <a href="https://github.com/nt7nguye">GitHub</a> ·
     <a href="https://www.linkedin.com/in/nt7nguye/">LinkedIn</a>
   </footer>
-</main>
-</body>
-</html>
+</Base>

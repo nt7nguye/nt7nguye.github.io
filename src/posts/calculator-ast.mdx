@@ -1,0 +1,39 @@
+---
+title: I beat Google's calculator
+date: 2023-03-30
+---
+import Calculator from "../embeds/Calculator.astro";
+
+A take-home asked me to build a calculator in React: digits, `+ - * /`, parentheses, `%`, `^`, `√`, memory keys and history. The buttons were easy. The interesting part was turning a string like `2*(3+4)^2` into a number.
+
+## Strings to trees
+
+You can't evaluate left to right, because `2+3*4` is 14, not 20. The standard fix is to parse the string into an abstract syntax tree (AST), where tighter operators sit deeper in the tree, then evaluate the tree bottom up.
+
+I wrote a recursive descent parser. Each precedence level gets its own function, and each function calls the next tighter one:
+
+```
+expression  → term expression1
+expression1 → ("+" | "-") term expression1 | ε
+term        → factor term1
+term1       → ("*" | "/" | "^") factor term1 | "%" term1 | ε
+factor      → number | "(" expression ")" | "-" factor | "√" factor
+```
+
+The `expression1` and `term1` split is how you remove left recursion, so the parser doesn't loop forever. The catch is that it makes the tree lean the wrong way. `10-2-3` has to mean `(10-2)-3`. I got that by building each tail with its children reversed, so it parses as `10 + ((0-3)-2)`, which is still 5. That works for `+ - * /` but not for `^`, so the evaluator has a special case for it.
+
+## Try it
+
+This is the same parser, ported from TypeScript. The tree below hides the `+ 0` and `* 1` nodes that the grammar adds.
+
+<Calculator value="2*1+1%" />
+
+## The percent sign
+
+While testing, I typed `2*1+1%` into Google. It said **2.02**. My calculator said **2.01**.
+
+My parser treats `%` as "divide by 100", so `1%` is 0.01 and the answer is 2 + 0.01. Google treats `a + b%` as "a plus b percent of a", like a shopping calculator: 2 plus 1% of 2 is 2.02.
+
+That rule is handy for `price + 13%`, but it makes `%` mean different things depending on what comes before it. I think 2.01 is right. My calculator has bugs of its own (I don't handle division by zero), but on this one I beat Google.
+
+Code: [github.com/nt7nguye/interviewed](https://github.com/nt7nguye/interviewed/tree/main/vial)

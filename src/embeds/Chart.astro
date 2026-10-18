@@ -1,0 +1,50 @@
+---
+// Line chart rendered to SVG at build time.
+//   <Chart data={rows} x="day" y={["requests", "cost"]} title="Traffic and cost" />
+// x values can be numbers or ISO dates. y is one key or a list of keys.
+const { data, x, y, title, caption } = Astro.props;
+const keys = Array.isArray(y) ? y : [y];
+const colors = ["var(--accent)", "var(--accent-2)", "var(--muted)"];
+
+const W = 640, H = 240, m = { t: 12, r: 12, b: 24, l: 44 };
+const isDate = typeof data[0][x] === "string";
+const xv = data.map((d) => (isDate ? Date.parse(d[x]) : d[x]));
+const yv = data.flatMap((d) => keys.map((k) => d[k]));
+const [x0, x1] = [Math.min(...xv), Math.max(...xv)];
+const [y0, y1] = [Math.min(0, ...yv), Math.max(...yv)];
+const sx = (v) => m.l + ((v - x0) / (x1 - x0 || 1)) * (W - m.l - m.r);
+const sy = (v) => H - m.b - ((v - y0) / (y1 - y0 || 1)) * (H - m.t - m.b);
+
+const yTicks = [0, 0.25, 0.5, 0.75, 1].map((f) => y0 + f * (y1 - y0));
+const xTicks = [0, Math.floor((data.length - 1) / 2), data.length - 1];
+const fmt = (v) => (Math.abs(v) >= 1000 ? `${+(v / 1000).toFixed(1)}k` : `${+v.toFixed(2)}`);
+const xLabel = (i) => (isDate ? data[i][x].slice(5, 10) : fmt(xv[i]));
+const path = (k) => data.map((d, i) => `${i ? "L" : "M"}${sx(xv[i]).toFixed(1)},${sy(d[k]).toFixed(1)}`).join("");
+---
+<figure class="chart">
+  {title && <figcaption><b>{title}</b>{caption && <> · {caption}</>}</figcaption>}
+  {keys.length > 1 && (
+    <p class="legend">{keys.map((k, i) => <span><i style={`background:${colors[i]}`} />{k}</span>)}</p>
+  )}
+  <svg viewBox={`0 0 ${W} ${H}`} role="img" aria-label={title ?? keys.join(", ")}>
+    {yTicks.map((v) => (
+      <g>
+        <line x1={m.l} x2={W - m.r} y1={sy(v)} y2={sy(v)} />
+        <text x={m.l - 6} y={sy(v)} dy="0.32em" text-anchor="end">{fmt(v)}</text>
+      </g>
+    ))}
+    {xTicks.map((i) => <text x={sx(xv[i])} y={H - 6} text-anchor="middle">{xLabel(i)}</text>)}
+    {keys.map((k, i) => <path d={path(k)} stroke={colors[i]} />)}
+  </svg>
+</figure>
+
+<style>
+  .chart { margin: 16px 0; }
+  figcaption { font-size: 14px; color: var(--ink-2); }
+  .legend { display: flex; gap: 16px; margin: 4px 0 0; font-size: 13px; color: var(--ink-2); }
+  .legend i { display: inline-block; width: 12px; height: 2px; margin-right: 6px; vertical-align: middle; }
+  svg { display: block; width: 100%; height: auto; overflow: visible; }
+  line { stroke: var(--grid); }
+  text { font-size: 11px; fill: var(--muted); font-variant-numeric: tabular-nums; }
+  path { fill: none; stroke-width: 2; stroke-linejoin: round; }
+</style>

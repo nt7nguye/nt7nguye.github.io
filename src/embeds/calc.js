@@ -107,15 +107,17 @@ function show(n, pad = "") {
   return pad + n.op + "\n" + show(n.left, pad + "  ") + (n.right ? show(n.right, pad + "  ") : "");
 }
 
-const input = document.getElementById("expr");
-const out = document.getElementById("out");
-function run() {
-  try {
-    const tree = parse(input.value.replace(/\s/g, ""));
-    out.textContent = "= " + evaluate(tree) + "\n\n" + show(simplify(tree));
-  } catch (e) {
-    out.textContent = e.message;
+export function mount(root) {
+  const input = root.querySelector("input");
+  const out = root.querySelector("pre");
+  function run() {
+    try {
+      const tree = parse(input.value.replace(/\s/g, ""));
+      out.textContent = "= " + evaluate(tree) + "\n\n" + show(simplify(tree));
+    } catch (e) {
+      out.textContent = e.message;
+    }
   }
+  input.addEventListener("input", run);
+  run();
 }
-input.addEventListener("input", run);
-run();

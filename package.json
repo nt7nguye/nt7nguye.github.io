@@ -1,0 +1,14 @@
+{
+  "name": "nt7nguye",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview"
+  },
+  "dependencies": {
+    "@astrojs/mdx": "5.0.6",
+    "astro": "6.4.8"
+  }
+}

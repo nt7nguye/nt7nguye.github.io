@@ -1,0 +1,21 @@
+<div class="game2048" data-game2048>
+  <div class="board" data-board tabindex="0" aria-label="2048 board. Use the arrow keys to move."></div>
+  <p><span data-status></span> · <button data-restart>Restart</button></p>
+  <p>Click the board, then use the arrow keys. On a phone, swipe.</p>
+</div>
+
+<style is:global>
+  .game2048 .board { position: relative; width: min(100%, 360px); aspect-ratio: 1; margin: 16px 0 8px;
+    border: 1px solid var(--grid); border-radius: 6px; touch-action: none; outline: none; }
+  .game2048 .board:focus { border-color: var(--accent); }
+  .game2048 .tile { position: absolute; width: 25%; height: 25%; display: grid; place-items: center;
+    font-size: 13px; text-align: center; border: 4px solid var(--page); border-radius: 10px; box-sizing: border-box;
+    background: color-mix(in srgb, var(--accent) calc(var(--level) * 9%), var(--page));
+    transition: left 100ms, top 100ms; }
+  .game2048 .tile.dark { color: #fff; }
+</style>
+
+<script>
+  import { mount } from "./game2048.js";
+  document.querySelectorAll("[data-game2048]").forEach(mount);
+</script>
