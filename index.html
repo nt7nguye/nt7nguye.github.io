@@ -4,63 +4,34 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Tan Nguyen</title>
-  <meta name="description" content="Tan Nguyen, software engineer.">
-  <style>
-    :root {
-      --bg: #fbfaf8;
-      --fg: #1c1b1a;
-      --muted: #6b6862;
-      --accent: #2f5bd3;
-      --rule: #e4e1dc;
-    }
-    @media (prefers-color-scheme: dark) {
-      :root {
-        --bg: #141413;
-        --fg: #ecebe8;
-        --muted: #9c9891;
-        --accent: #8aa8ff;
-        --rule: #2c2b29;
-      }
-    }
-    * { box-sizing: border-box; }
-    body {
-      margin: 0;
-      background: var(--bg);
-      color: var(--fg);
-      font: 17px/1.6 -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
-    }
-    main {
-      max-width: 620px;
-      margin: 0 auto;
-      padding: 18vh 16px 64px;
-    }
-    h1 {
-      margin: 0 0 4px;
-      font-size: 2rem;
-      letter-spacing: -0.02em;
-    }
-    .role { margin: 0 0 32px; color: var(--muted); }
-    p { margin: 0 0 16px; }
-    nav {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 20px;
-      margin-top: 32px;
-      padding-top: 20px;
-      border-top: 1px solid var(--rule);
-    }
-    a { color: var(--accent); text-decoration: none; }
-    a:hover { text-decoration: underline; }
-  </style>
+  <link rel="stylesheet" href="/style.css">
 </head>
 <body>
-  <main>
-    <h1>Tan Nguyen</h1>
-    <p class="role">Software engineer</p>
-    <p>I build software. This page is a placeholder. More soon.</p>
-    <nav>
-      <a href="https://github.com/nt7nguye">GitHub</a>
-    </nav>
-  </main>
+<main>
+  <h1>Tan Nguyen</h1>
+  <p class="sub">Software engineer in Toronto.</p>
+
+  <h2>Writing</h2>
+  <ul class="list">
+    <li><span>2025-09-22</span><a href="/posts/games-as-interviews/">Games make good interview questions</a></li>
+    <li><span>2023-03-30</span><a href="/posts/calculator-ast/">I beat Google's calculator</a></li>
+    <li><span>2022-08-15</span><a href="/posts/org-chart-2048/">2048, but the tiles are the org chart</a></li>
+  </ul>
+
+  <h2>Work</h2>
+  <ul class="list">
+    <li><span>2025–now</span>WorkWhile, Senior SWE</li>
+    <li><span>2023–2025</span>Secoda, Senior SWE</li>
+    <li><span>2022</span>Datadog, SWE</li>
+    <li><span>2022</span>Level, SWE</li>
+    <li><span>2021</span>Shypyard, SWE</li>
+    <li><span>2023</span>University of Waterloo, BCS</li>
+  </ul>
+
+  <footer>
+    <a href="https://github.com/nt7nguye">GitHub</a> ·
+    <a href="https://www.linkedin.com/in/nt7nguye/">LinkedIn</a>
+  </footer>
+</main>
 </body>
 </html>

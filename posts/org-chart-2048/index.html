@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>2048, but the tiles are the org chart · Tan Nguyen</title>
+  <link rel="stylesheet" href="/style.css">
+  <style>
+    #board { position: relative; width: min(100%, 360px); aspect-ratio: 1; margin: 16px 0 8px;
+      border: 1px solid var(--grid); border-radius: 6px; touch-action: none; outline: none; }
+    #board:focus { border-color: var(--accent); }
+    .tile { position: absolute; width: 25%; height: 25%; display: grid; place-items: center;
+      font-size: 13px; text-align: center; border: 4px solid var(--page); border-radius: 10px;
+      background: color-mix(in srgb, var(--accent) calc(var(--level) * 9%), var(--page));
+      transition: left 100ms, top 100ms; }
+    .tile.dark { color: #fff; }
+  </style>
+</head>
+<body>
+<main>
+  <p><a href="/">← Tan Nguyen</a></p>
+  <h1>2048, but the tiles are the org chart</h1>
+  <p class="sub">2022-08-15</p>
+
+  <p>During a hack week at Datadog, I scraped the company org chart from Workday and turned it into 2048. Every tile is a person. Merge two of the same and you get their manager. Keep going and you climb the chart until you reach the top.</p>
+
+  <p>The version below uses job titles instead of real people.</p>
+
+  <div id="board" tabindex="0" aria-label="2048 board. Use the arrow keys to move."></div>
+  <p><span id="status"></span> · <button id="restart">Restart</button></p>
+  <p>Click the board, then use the arrow keys. On a phone, swipe.</p>
+
+  <h2>How it works</h2>
+  <p>The original was a React app. Each tile value (2, 4, 8, … 2048) maps to a person, and the map comes from the scraped chart. Moving a row is the same few steps every time: take the tiles in the row, starting from the side you're moving toward. Merge two neighbours with the same value, and only once per tile per move. Then pack the rest against the edge. The slide is a CSS transition on each tile's position, and the merge happens after the slide ends.</p>
+  <p>This page is a rewrite of that in about 100 lines of plain JavaScript: <a href="game.js">game.js</a>.</p>
+
+  <footer><a href="/">← All posts</a></footer>
+</main>
+<script src="game.js"></script>
+</body>
+</html>

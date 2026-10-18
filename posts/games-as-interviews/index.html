@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Games make good interview questions · Tan Nguyen</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<main>
+  <p><a href="/">← Tan Nguyen</a></p>
+  <h1>Games make good interview questions</h1>
+  <p class="sub">2025-09-22</p>
+
+  <h2>Leetcode isn't the best differentiator</h2>
+  <p>A lot of people don't like Leetcode, for many reasons. My reason is practical. Most good candidates from Waterloo can comfortably do medium problems. Hard problems test recall more than problem solving.</p>
+  <p>It's hard to evaluate problem solving when people can memorize Leetcode problems, or worse, <a href="https://www.interviewcoder.co/">cheat with AI</a>. At a small startup, every bad hire costs a lot of time, because each person is a big part of the team. Getting technical hiring right is close to existential.</p>
+
+  <h2>The alternatives have trade-offs</h2>
+  <p>When interviews move away from Leetcode to "real world coding", the problems usually get easier, and they don't get more fun. There are two reasons.</p>
+
+  <p><b>Leetcode is simple.</b> The input is an array, a tree or a graph, and you return some output. The solution can be hard, but the problem is easy to understand. Real-world context is often not intuitive for the candidate, so the interviewer has to lower the difficulty to make room for it.</p>
+  <p>Take a Ramp onsite problem as an example. It tests basic networking by turning graph traversal into a puzzle:</p>
+  <blockquote>Given a starting URL <code>ramp_interview.com/0</code> that returns a list of URLs like <code>[ramp_interview.com/322, ramp_interview.com/yellow]</code>, find the URL that returns <code>success</code>.</blockquote>
+  <p>It's more interesting than plain graph traversal. There are easter eggs in the response headers, and some requests fail with a 5XX so you have to retry. In practice, the candidate needs too much hand-holding. When they get a 5XX they ask if the service is down, and the interviewer has to steer them to the real question: how do you handle 5XX responses here?</p>
+
+  <p><b>Leetcode has a clear measure of correctness.</b> You pass the test cases or you don't. <code>O(n)</code> beats <code>O(n log n)</code>. Judging OOP, code cleanliness or how well someone prompts Cursor is subjective, and a rubric for it is hard to keep consistent across many interviewers. So most "non-Leetcode" problems end up as Leetcode with some seasoning on top.</p>
+
+  <h2>The problem</h2>
+  <p>Ours is tic-tac-toe, in two parts.</p>
+  <p><b>Take-home:</b> write a program that plays every possible game and prints the number of valid, completed board states. Valid means reachable under the rules. Completed means someone won or the board is full. Two games that end in the same state count once.</p>
+  <p><b>Onsite, 50 minutes:</b> write a strategy for <code>O</code>. A simulator plays 10 games against a computer strategy: the computer opens with each of the 9 squares, then you go first once. Anything is allowed, including Google, any library and calls to Claude. The computer strategy is documented, and you can read it, copy it or exploit it. It also isn't optimal and loses to itself.</p>
+  <p>Candidates usually take one of four paths:</p>
+  <ol>
+    <li>Heuristics: take a win, block a win, make or block a fork, take the center or a corner.</li>
+    <li>Start from the computer strategy, then find and fix where it loses.</li>
+    <li>Minimax. Tic-tac-toe is small enough that it needs no pruning or depth limit.</li>
+    <li>Something new, like importing the computer strategy and using it to look ahead.</li>
+  </ol>
+
+  <h2>Why games work</h2>
+  <p><b>Games are simple.</b> I never had to explain the rules of tic-tac-toe. The take-home also preps candidates for the onsite without them knowing, so nobody is lost at the start. The exception is someone who didn't write their own take-home, and that's obvious when you compare the two.</p>
+  <p><b>Games have a clear measure of success.</b> You win, lose or tie. The simulator is basically a wrapper around 10 test cases. But the testing is adaptive, because another strategy plays against yours. Candidates also get to decide what "good" means. Is it better to lose once and win nine times, or to always at least tie?</p>
+  <p><b>Games test real-world coding without forcing it.</b> I think experience shows most when people fix problems. The engineers I look up to find issues fast because they've fixed so many, and they move naturally across the code. How someone uses their IDE, and where they put breakpoints or print statements, tells me more than their resume. Open-ended games rarely work on the first try, so candidates end up reading the starter code and debugging their own logic. That's a better experience than "this code has 10 bugs, find them". Nobody has to fake a real-world setting. It just happens.</p>
+  <p><b>Games test culture fit.</b> I had a lot of fun making this problem. When a candidate has fun solving it, that's a strong signal, and we've worked really well together when they joined.</p>
+  <p><b>AI struggles with them.</b> It can probably one-shot the take-home now. The onsite is still hard for it.</p>
+
+  <footer><a href="/">← All posts</a></footer>
+</main>
+</body>
+</html>
