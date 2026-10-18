@@ -10,7 +10,7 @@
       border: 1px solid var(--grid); border-radius: 6px; touch-action: none; outline: none; }
     #board:focus { border-color: var(--accent); }
     .tile { position: absolute; width: 25%; height: 25%; display: grid; place-items: center;
-      font-size: 13px; text-align: center; border: 4px solid var(--page); border-radius: 10px;
+      font-size: 13px; text-align: center; border: 4px solid var(--page); border-radius: 10px; box-sizing: border-box;
       background: color-mix(in srgb, var(--accent) calc(var(--level) * 9%), var(--page));
       transition: left 100ms, top 100ms; }
     .tile.dark { color: #fff; }
@@ -31,10 +31,8 @@
   <p>Click the board, then use the arrow keys. On a phone, swipe.</p>
 
   <h2>How it works</h2>
-  <p>The original was a React app. Each tile value (2, 4, 8, … 2048) maps to a person, and the map comes from the scraped chart. Moving a row is the same few steps every time: take the tiles in the row, starting from the side you're moving toward. Merge two neighbours with the same value, and only once per tile per move. Then pack the rest against the edge. The slide is a CSS transition on each tile's position, and the merge happens after the slide ends.</p>
-  <p>This page is a rewrite of that in about 100 lines of plain JavaScript: <a href="game.js">game.js</a>.</p>
-
-  <footer><a href="/">← All posts</a></footer>
+  <p>The original was a React app. Each tile value (2, 4, 8, … 2048) maps to a person, and the map comes from the scraped chart. To move a row, take its tiles starting from the side you're moving toward, merge two neighbours with the same value (once per tile per move), then pack the rest against the edge. The slide is a CSS transition on each tile's position, and the merge happens after the slide ends.</p>
+  <p>This page is a rewrite of that in about 130 lines of plain JavaScript: <a href="game.js">game.js</a>.</p>
 </main>
 <script src="game.js"></script>
 </body>

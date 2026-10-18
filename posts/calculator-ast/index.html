@@ -26,17 +26,15 @@ factor      → number | "(" expression ")" | "-" factor | "√" factor</code></
 
   <h2>Try it</h2>
   <p>This is the same parser, ported from TypeScript. The tree below hides the <code>+ 0</code> and <code>* 1</code> nodes that the grammar adds.</p>
-  <input id="expr" type="text" value="2*1+1%" spellcheck="false" autocomplete="off" aria-label="Expression">
+  <input id="expr" value="2*1+1%" spellcheck="false" autocomplete="off" aria-label="Expression">
   <pre id="out" aria-live="polite"></pre>
 
   <h2>The percent sign</h2>
   <p>While testing, I typed <code>2*1+1%</code> into Google. It said <b>2.02</b>. My calculator said <b>2.01</b>.</p>
   <p>My parser treats <code>%</code> as "divide by 100", so <code>1%</code> is 0.01 and the answer is 2 + 0.01. Google treats <code>a + b%</code> as "a plus b percent of a", like a shopping calculator: 2 plus 1% of 2 is 2.02.</p>
-  <p>That rule is handy for <code>price + 13%</code>, but it means <code>%</code> means different things depending on what comes before it. <code>1%</code> alone is 0.01, but after a <code>+</code> it becomes a percentage of whatever is on the left. I think 2.01 is right. My calculator definitely has bugs of its own (I don't handle division by zero), but on this one I'm happy to say I beat Google.</p>
+  <p>That rule is handy for <code>price + 13%</code>, but it makes <code>%</code> mean different things depending on what comes before it. I think 2.01 is right. My calculator has bugs of its own (I don't handle division by zero), but on this one I beat Google.</p>
 
   <p>Code: <a href="https://github.com/nt7nguye/interviewed/tree/main/vial">github.com/nt7nguye/interviewed</a></p>
-
-  <footer><a href="/">← All posts</a></footer>
 </main>
 <script src="calc.js"></script>
 </body>

@@ -13,8 +13,8 @@
   <p class="sub">2025-09-22</p>
 
   <h2>Leetcode isn't the best differentiator</h2>
-  <p>A lot of people don't like Leetcode, for many reasons. My reason is practical. Most good candidates from Waterloo can comfortably do medium problems. Hard problems test recall more than problem solving.</p>
-  <p>It's hard to evaluate problem solving when people can memorize Leetcode problems, or worse, <a href="https://www.interviewcoder.co/">cheat with AI</a>. At a small startup, every bad hire costs a lot of time, because each person is a big part of the team. Getting technical hiring right is close to existential.</p>
+  <p>A lot of people don't like Leetcode. My reason is practical. Most good candidates from Waterloo can comfortably do medium problems. Hard problems test recall more than problem solving.</p>
+  <p>It's hard to evaluate problem solving when people can memorize Leetcode problems, or worse, <a href="https://www.interviewcoder.co/">cheat with AI</a>. At a small startup, each person is a big part of the team, so getting technical hiring right is close to existential.</p>
 
   <h2>The alternatives have trade-offs</h2>
   <p>When interviews move away from Leetcode to "real world coding", the problems usually get easier, and they don't get more fun. There are two reasons.</p>
@@ -24,7 +24,7 @@
   <blockquote>Given a starting URL <code>ramp_interview.com/0</code> that returns a list of URLs like <code>[ramp_interview.com/322, ramp_interview.com/yellow]</code>, find the URL that returns <code>success</code>.</blockquote>
   <p>It's more interesting than plain graph traversal. There are easter eggs in the response headers, and some requests fail with a 5XX so you have to retry. In practice, the candidate needs too much hand-holding. When they get a 5XX they ask if the service is down, and the interviewer has to steer them to the real question: how do you handle 5XX responses here?</p>
 
-  <p><b>Leetcode has a clear measure of correctness.</b> You pass the test cases or you don't. <code>O(n)</code> beats <code>O(n log n)</code>. Judging OOP, code cleanliness or how well someone prompts Cursor is subjective, and a rubric for it is hard to keep consistent across many interviewers. So most "non-Leetcode" problems end up as Leetcode with some seasoning on top.</p>
+  <p><b>Leetcode has a clear measure of correctness.</b> You pass the test cases or you don't. <code>O(n)</code> beats <code>O(n log n)</code>. Judging OOP, code cleanliness or how well someone prompts Cursor is subjective, and a rubric for it is hard to keep consistent across many interviewers. So most "non-Leetcode" problems end up as Leetcode with seasoning on top.</p>
 
   <h2>The problem</h2>
   <p>Ours is tic-tac-toe, in two parts.</p>
@@ -40,12 +40,10 @@
 
   <h2>Why games work</h2>
   <p><b>Games are simple.</b> I never had to explain the rules of tic-tac-toe. The take-home also preps candidates for the onsite without them knowing, so nobody is lost at the start. The exception is someone who didn't write their own take-home, and that's obvious when you compare the two.</p>
-  <p><b>Games have a clear measure of success.</b> You win, lose or tie. The simulator is basically a wrapper around 10 test cases. But the testing is adaptive, because another strategy plays against yours. Candidates also get to decide what "good" means. Is it better to lose once and win nine times, or to always at least tie?</p>
-  <p><b>Games test real-world coding without forcing it.</b> I think experience shows most when people fix problems. The engineers I look up to find issues fast because they've fixed so many, and they move naturally across the code. How someone uses their IDE, and where they put breakpoints or print statements, tells me more than their resume. Open-ended games rarely work on the first try, so candidates end up reading the starter code and debugging their own logic. That's a better experience than "this code has 10 bugs, find them". Nobody has to fake a real-world setting. It just happens.</p>
-  <p><b>Games test culture fit.</b> I had a lot of fun making this problem. When a candidate has fun solving it, that's a strong signal, and we've worked really well together when they joined.</p>
+  <p><b>Games have a clear measure of success.</b> You win, lose or tie. The simulator is a wrapper around 10 test cases. But the testing is adaptive, because another strategy plays against yours. Candidates also get to decide what "good" means. Is it better to lose once and win nine times, or to always at least tie?</p>
+  <p><b>Games test real-world coding without forcing it.</b> I think experience shows most when people fix problems. The engineers I look up to find issues fast because they've fixed so many, and they move naturally across the code. How someone uses their IDE, and where they put breakpoints or print statements, tells me more than their resume. Open-ended games rarely work on the first try, so candidates end up reading the starter code and debugging their own logic. That's a better experience than "this code has 10 bugs, find them".</p>
+  <p><b>Games test culture fit.</b> I had a lot of fun making this problem. When a candidate has fun solving it, that's a strong signal, and we've worked well together when they joined.</p>
   <p><b>AI struggles with them.</b> It can probably one-shot the take-home now. The onsite is still hard for it.</p>
-
-  <footer><a href="/">← All posts</a></footer>
 </main>
 </body>
 </html>

@@ -8,7 +8,7 @@
 
 function parse(expr) {
   let i = 0;
-  let tok = null;
+  let tok;
 
   const isDigit = (c) => c >= "0" && c <= "9";
   const node = (op, left = null, right = null, value = 0) => ({ op, left, right, value });

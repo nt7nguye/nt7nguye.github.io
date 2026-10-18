@@ -25,7 +25,6 @@ function spawn() {
   for (let r = 0; r < N; r++)
     for (let c = 0; c < N; c++)
       if (!tiles.some((t) => t.r === r && t.c === c)) empty.push([r, c]);
-  if (!empty.length) return;
   const [r, c] = empty[Math.floor(Math.random() * empty.length)];
   tiles.push({ id: nextId++, r, c, v: 2 });
 }
